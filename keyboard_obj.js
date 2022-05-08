@@ -1,6 +1,4 @@
-// import { KEYBOARD } from "./keyboard_obj";
-
-const KEYBOARD = [
+export const KEYBOARD = [
   [
     {
       en: '`',
@@ -454,45 +452,3 @@ const KEYBOARD = [
   ],
 
 ];
-
-
-
-
-function createPageContent() {
-  // создаем область для ввода текста
-  let textarea = document.createElement('textarea');
-  textarea.className = 'text';
-  
-  document.body.append(textarea);
-
-  // создаем клавиатуру
-  let keyboard = document.createElement('div');
-  let keyboardContent = function () {
-    // create separate lines of keybord from KEYBOARD object (from top to bottom)
-    KEYBOARD.forEach((keyboardLine) => {
-      let line = document.createElement('div');
-      let lineContent = function () {
-        keyboardLine.forEach(key => {
-          let keyElement = document.createElement('div');
-          keyElement.id = key.keyName;
-          keyElement.className = 'key';
-          keyElement.innerHTML = key.keyName;
-          // console.log('KEY:');
-          // console.log(keyElement);
-          line.append(keyElement);
-        })
-      };
-      lineContent();
-      line.className = 'keyboard-line';
-      // console.log('LINE:');
-      // console.log(line);
-      keyboard.append(line);
-    });
-  };
-  keyboardContent();
-  keyboard.id = 'keyboard';
-  // keyboard.innerHTML = keyboardContent();
-  document.body.append(keyboard);
-  
-};
-
