@@ -108,7 +108,7 @@ const KEYBOARD = [
     },
     {
       func: true,
-      keyName: 'backspase',
+      keyName: 'Backspase',
     },
   ],
   [
@@ -219,6 +219,10 @@ const KEYBOARD = [
       onSiftEn: '|',
       onSiftRu: '/',
       keyName: 'reversed-slash',
+    },
+    {
+      func: true,
+      keyName: 'Delete',
     },
 
   ],
@@ -455,6 +459,11 @@ const KEYBOARD = [
 
 ];
 
+
+// ^ сделать функцию заполнения innerHTML каждой клавиши отдельной от создания клавиатуры
+// ^ заполнение в зависимости от языка, оншифта и капса
+// ^ анимация onhover
+// ^ onclick
 
 
 
