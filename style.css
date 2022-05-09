@@ -1,0 +1,64 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+}
+
+textarea {
+  height: 150px;
+  width: 880px;
+  margin: 50px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#keyboard {
+  height: auto;
+  width: 880px;
+  margin: 5px auto;
+  border: 1px solid black;
+}
+
+.keyboard-line {
+  display: flex;
+}
+
+.key {
+  height: 50px;
+  width: 50px;
+  background: rgb(165, 148, 148);
+  border-radius: 5px;
+  margin: 3px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
+#tab {
+  width: 70px;
+}
+#capslock {
+  width: 100px;
+}
+#shiftleft {
+  width: 120px;
+}
+#controlleft {
+  width: 64px;
+}
+#space {
+  width: 386px;
+}
+
+#backspace, #delete, #enter, #shiftright, #controlright {
+  flex-grow: 1;
+}
+
+.hovered {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.pressed {
+  background: rgba(149, 43, 43, 0.5);
+}
