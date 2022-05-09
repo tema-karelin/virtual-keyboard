@@ -1,5 +1,3 @@
-// import { KEYBOARD } from "./keyboard_obj.js";
-
 const KEYBOARD = [
   [
     {
@@ -558,9 +556,7 @@ const KEYBOARD = [
 ];
 const KEYS = KEYBOARD.flat();
 
-
 let onEventKey;
-
 
 // ^ сделать функцию заполнения innerHTML каждой клавиши отдельной от создания клавиатуры
 // готово
@@ -619,7 +615,6 @@ function createPageContent() {
 
 function fillKeys(option) {
   let keys = document.getElementsByClassName('key');
-  // console.log(keys);
   Array.prototype.forEach.call(keys, function(key) {
     let keyObj = KEYS.find(obj => obj.id === key.id);
     if (!keyObj.func) {
