@@ -1,507 +1,724 @@
-// import { KEYBOARD } from "./keyboard_obj";
+// import { KEYBOARD } from "./keyboard_obj.js";
 
 const KEYBOARD = [
   [
     {
       en: '`',
       ru: 'ё',
+      keyName: '',
       func: false,
       onSiftEn: '~',
       onSiftRu: 'Ё',
-      keyName: 'yo',
+      id: 'backquote',
     },
     {
       en: '1',
       ru: '1',
+      keyName: '',
       func: false,
       onSiftEn: '!',
       onSiftRu: '!',
-      keyName: 'one',
+      id: 'digit1',
     },
     {
       en: '2',
       ru: '2',
+      keyName: '',
       func: false,
       onSiftEn: '@',
       onSiftRu: '"',
-      keyName: 'two',
+      id: 'digit2',
     },
     {
       en: '3',
       ru: '3',
+      keyName: '',
       func: false,
       onSiftEn: '#',
       onSiftRu: '№',
-      keyName: 'three',
+      id: 'digit3',
     },
     {
       en: '4',
       ru: '4',
+      keyName: '',
       func: false,
       onSiftEn: '$',
       onSiftRu: ';',
-      keyName: 'four',
+      id: 'digit4',
     },
     {
       en: '5',
       ru: '5',
+      keyName: '',
       func: false,
       onSiftEn: '%',
       onSiftRu: '%',
-      keyName: 'five',
+      id: 'digit5',
     },
     {
       en: '6',
       ru: '6',
+      keyName: '',
       func: false,
       onSiftEn: '^',
       onSiftRu: ':',
-      keyName: 'six',
+      id: 'digit6',
     },
     {
       en: '7',
       ru: '7',
+      keyName: '',
       func: false,
       onSiftEn: '&',
       onSiftRu: '?',
-      keyName: 'seven',
+      id: 'digit7',
     },
     {
       en: '8',
       ru: '8',
+      keyName: '',
       func: false,
       onSiftEn: '*',
       onSiftRu: '*',
-      keyName: 'eight',
+      id: 'digit8',
     },
     {
       en: '9',
       ru: '9',
+      keyName: '',
       func: false,
       onSiftEn: '(',
       onSiftRu: '(',
-      keyName: 'nine',
+      id: 'digit9',
     },
     {
       en: '0',
       ru: '0',
+      keyName: '',
       func: false,
       onSiftEn: ')',
       onSiftRu: ')',
-      keyName: 'zero',
+      id: 'digit0',
     },
     {
       en: '-',
       ru: '-',
+      keyName: '',
       func: false,
       onSiftEn: '_',
       onSiftRu: '_',
-      keyName: 'hyphen',
+      id: 'minus',
     },
     {
       en: '=',
       ru: '=',
+      keyName: '',
       func: false,
       onSiftEn: '+',
       onSiftRu: '+',
-      keyName: 'equal',
+      id: 'equal',
     },
     {
+      keyName: '&#8656;',
       func: true,
-      keyName: 'Backspase',
+      id: 'backspace',
     },
   ],
   [
     {
-      func: false,
-      keyName: 'Tab',
+      en: '    ',
+      ru: '    ',
+      onSiftEn: '    ',
+      onSiftRu: '    ',
+      special: true,
+      keyName: '&#8594;|',
+      func: true,
+      id: 'tab',
     },
     {
       en: 'q',
       ru: 'й',
+      keyName: '',
       func: false,
       onSiftEn: 'Q',
       onSiftRu: 'Й',
-      keyName: 'q',
+      id: 'q',
     },
     {
       en: 'w',
       ru: 'ц',
+      keyName: '',
       func: false,
       onSiftEn: 'Q',
       onSiftRu: 'Ц',
-      keyName: 'w',
+      id: 'w',
     },
     {
       en: 'e',
       ru: 'у',
+      keyName: '',
       func: false,
       onSiftEn: 'E',
       onSiftRu: 'У',
-      keyName: 'e',
+      id: 'e',
     },
     {
       en: 'r',
       ru: 'к',
+      keyName: '',
       func: false,
       onSiftEn: 'R',
       onSiftRu: 'К',
-      keyName: 'r',
+      id: 'r',
     },
     {
       en: 't',
       ru: 'е',
+      keyName: '',
       func: false,
       onSiftEn: 't',
       onSiftRu: 'Е',
-      keyName: 't',
+      id: 't',
     },
     {
       en: 'y',
       ru: 'н',
+      keyName: '',
       func: false,
       onSiftEn: 'Y',
       onSiftRu: 'Н',
-      keyName: 'y',
+      id: 'y',
     },
     {
       en: 'u',
       ru: 'г',
+      keyName: '',
       func: false,
       onSiftEn: 'U',
       onSiftRu: 'Г',
-      keyName: 'u',
+      id: 'u',
     },
     {
       en: 'i',
       ru: 'ш',
+      keyName: '',
       func: false,
       onSiftEn: 'I',
       onSiftRu: 'Ш',
-      keyName: 'i',
+      id: 'i',
     },
     {
       en: 'o',
       ru: 'щ',
+      keyName: '',
       func: false,
       onSiftEn: 'O',
       onSiftRu: 'Щ',
-      keyName: 'o',
+      id: 'o',
     },
     {
       en: 'p',
       ru: 'з',
+      keyName: '',
       func: false,
       onSiftEn: 'P',
       onSiftRu: 'З',
-      keyName: 'p',
+      id: 'p',
     },
     {
       en: '[',
       ru: 'х',
+      keyName: '',
       func: false,
       onSiftEn: '{',
       onSiftRu: 'Х',
-      keyName: 'square-bracket-left',
+      id: 'bracketleft',
     },
     {
       en: ']',
       ru: 'ъ',
+      keyName: '',
       func: false,
       onSiftEn: '}',
       onSiftRu: 'Ъ',
-      keyName: 'square-bracket-right',
+      id: 'bracketright',
     },
     {
       en: '\\',
       ru: '\\',
+      keyName: '',
       func: false,
       onSiftEn: '|',
       onSiftRu: '/',
-      keyName: 'reversed-slash',
+      id: 'backslash',
     },
     {
-      func: true,
       keyName: 'Delete',
+      func: true,
+      id: 'delete',
     },
 
   ],
   [
     {
-      func: true,
       keyName: 'CapsLock',
+      func: true,
+      id: 'capslock',
     },
     {
       en: 'a',
       ru: 'ф',
+      keyName: '',
       func: false,
       onSiftEn: 'A',
       onSiftRu: 'Ф',
-      keyName: 'a',
+      id: 'a',
     },
     {
       en: 's',
       ru: 'ы',
+      keyName: '',
       func: false,
       onSiftEn: 'S',
       onSiftRu: 'Ы',
-      keyName: 's',
+      id: 's',
     },
     {
       en: 'd',
       ru: 'в',
+      keyName: '',
       func: false,
       onSiftEn: 'D',
       onSiftRu: 'В',
-      keyName: 'd',
+      id: 'd',
     },
     {
       en: 'f',
       ru: 'а',
+      keyName: '',
       func: false,
       onSiftEn: 'F',
       onSiftRu: 'А',
-      keyName: 'а',
+      id: 'f',
     },
     {
       en: 'g',
       ru: 'п',
+      keyName: '',
       func: false,
       onSiftEn: 'G',
       onSiftRu: 'П',
-      keyName: 'g',
+      id: 'g',
     },
     {
       en: 'h',
       ru: 'р',
+      keyName: '',
       func: false,
       onSiftEn: 'H',
       onSiftRu: 'Р',
-      keyName: 'h',
+      id: 'h',
     },
     {
       en: 'j',
       ru: 'о',
+      keyName: '',
       func: false,
       onSiftEn: 'J',
       onSiftRu: 'О',
-      keyName: 'j',
+      id: 'j',
     },
     {
       en: 'k',
       ru: 'л',
+      keyName: '',
       func: false,
       onSiftEn: 'K',
       onSiftRu: 'Л',
-      keyName: 'k',
+      id: 'k',
     },
     {
       en: 'l',
       ru: 'д',
+      keyName: '',
       func: false,
       onSiftEn: 'L',
       onSiftRu: 'Д',
-      keyName: 'l',
+      id: 'l',
     },
     {
       en: ';',
       ru: 'ж',
+      keyName: '',
       func: false,
       onSiftEn: ':',
       onSiftRu: 'Ж',
-      keyName: 'semicolon',
+      id: 'semicolon',
     },
     {
       en: '\'',
       ru: 'э',
+      keyName: '',
       func: false,
       onSiftEn: '"',
       onSiftRu: 'Э',
-      keyName: 'quotes',
+      id: 'quote',
     },
     {
+      en: '\n',
+      ru: '    ',
+      onSiftEn: '    ',
+      onSiftRu: '    ',
+      special: true,
+      keyName: '&#8617',
       func: true,
-      keyName: 'Enter',
+      id: 'enter',
     },
   ],
   [
     {
+      keyName: '&#8679',
       func: true,
-      keyName: 'Left-Shift',
+      id: 'shiftleft',
     },
     {
       en: 'z',
       ru: 'я',
+      keyName: '',
       func: false,
       onSiftEn: 'Z',
       onSiftRu: 'Я',
-      keyName: 'z',
+      id: 'z',
     },
     {
       en: 'x',
       ru: 'ч',
+      keyName: '',
       func: false,
       onSiftEn: 'X',
       onSiftRu: 'Ч',
-      keyName: 'x',
+      id: 'x',
     },
     {
       en: 'c',
       ru: 'с',
+      keyName: '',
       func: false,
       onSiftEn: 'C',
       onSiftRu: 'С',
-      keyName: 'c',
+      id: 'c',
     },
     {
       en: 'v',
-      ru: '',
+      ru: 'м',
+      keyName: '',
       func: false,
       onSiftEn: 'V',
-      onSiftRu: '',
-      keyName: 'v',
+      onSiftRu: 'М',
+      id: 'v',
     },
     {
       en: 'b',
-      ru: '',
+      ru: 'и',
+      keyName: '',
       func: false,
       onSiftEn: 'B',
-      onSiftRu: '',
-      keyName: 'b',
+      onSiftRu: 'И',
+      id: 'b',
     },
     {
       en: 'n',
-      ru: '',
+      ru: 'т',
+      keyName: '',
       func: false,
       onSiftEn: 'N',
-      onSiftRu: '',
-      keyName: 'n',
+      onSiftRu: 'Т',
+      id: 'n',
     },
     {
       en: 'm',
-      ru: '',
+      ru: 'ь',
+      keyName: '',
       func: false,
       onSiftEn: 'M',
-      onSiftRu: '',
-      keyName: 'm',
+      onSiftRu: 'Ь',
+      id: 'm',
     },
     {
       en: ',',
-      ru: '',
+      ru: 'б',
+      keyName: '',
       func: false,
       onSiftEn: '<',
-      onSiftRu: '',
-      keyName: 'comma',
+      onSiftRu: 'Б',
+      id: 'comma',
     },
     {
       en: '.',
-      ru: '',
+      ru: 'ю',
+      keyName: '',
       func: false,
       onSiftEn: '>',
-      onSiftRu: '',
-      keyName: 'dot',
+      onSiftRu: 'Ю',
+      id: 'period',
     },
     {
       en: '/',
-      ru: '',
+      ru: '.',
+      keyName: '',
       func: false,
       onSiftEn: '?',
-      onSiftRu: '',
-      keyName: 'slash',
+      onSiftRu: ',',
+      id: 'slash',
     },
     {
+      en: '↑',
+      ru: '↑',
+      onSiftEn: '↑',
+      onSiftRu: '↑',
+      special: true,
+      keyName: '&#8593;',
       func: true,
-      keyName: 'Arrow-Up',
+      id: 'arrowup',
     },
     {
+      keyName: '&#8679',
       func: true,
-      keyName: 'Right-Shift',
+      id: 'shiftright',
     },
   ],
   [
     {
+      keyName: 'Ctrl',
       func: true,
-      keyName: 'Left-Ctrl',
+      id: 'controlleft',
     },
     {
+      keyName: 'win',
       func: true,
-      keyName: 'Win',
+      id: 'metaleft',
     },
     {
+      keyName: 'Alt',
       func: true,
-      keyName: 'Left-Alt',
+      id: 'altleft',
     },
     {
+      en: ' ',
+      ru: ' ',
+      onSiftEn: ' ',
+      onSiftRu: ' ',
+      special: true,
+      keyName: '',
       func: true,
-      keyName: 'Space',
+      id: 'space',
     },
     {
+      keyName: 'Alt',
       func: true,
-      keyName: 'Right-Alt',
+      id: 'altright',
     },
     {
+      en: '←',
+      ru: '←',
+      onSiftEn: '←',
+      onSiftRu: '←;',
+      special: true,
+      keyName: '&#8592;',
       func: true,
-      keyName: 'Arrow-Left',
+      id: 'arrowleft',
     },
     {
+      en: '↓',
+      ru: '↓',
+      onSiftEn: '↓',
+      onSiftRu: '↓',
+      special: true,
+      keyName: '&#8595;',
       func: true,
-      keyName: 'Arrow-Bottom',
+      id: 'arrowdown',
     },
     {
+      en: '→',
+      ru: '→',
+      onSiftEn: '→',
+      onSiftRu: '→',
+      special: true,
+      keyName: '&#8594;',
       func: true,
-      keyName: 'Arrow-Right',
+      id: 'arrowright',
     },
     {
+      keyName: 'Ctrl',
       func: true,
-      keyName: 'Right-Ctrl',
+      id: 'controlright',
     },
   ],
-
 ];
+const KEYS = KEYBOARD.flat();
+
+
+let onEventKey;
 
 
 // ^ сделать функцию заполнения innerHTML каждой клавиши отдельной от создания клавиатуры
+// готово
+// ^ стилизация
+// ^ кнопка win
+// ^ случай с клавиатурой mac
+
 // ^ заполнение в зависимости от языка, оншифта и капса
 // ^ анимация onhover
 // ^ onclick
+// обычная клавиша (символьная)
+// tab, пробел, enter и стрелки
+// shift
+// backspase
+// delete
+// alt + shift
+// caps
 
-
+let textarea = document.createElement('textarea');
+let keyboard = document.createElement('div');
 
 function createPageContent() {
   // создаем область для ввода текста
-  let textarea = document.createElement('textarea');
+  
   textarea.className = 'text';
+  textarea.autofocus = true;
   
   document.body.append(textarea);
 
   // создаем клавиатуру
-  let keyboard = document.createElement('div');
-  let keyboardContent = function () {
+  
+  let keyboardContent = () => {
     // create separate lines of keybord from KEYBOARD object (from top to bottom)
     KEYBOARD.forEach((keyboardLine) => {
       let line = document.createElement('div');
-      let lineContent = function () {
+      let lineContent = () => {
         keyboardLine.forEach(key => {
           let keyElement = document.createElement('div');
-          keyElement.id = key.keyName;
+          keyElement.id = key.id;
           keyElement.className = 'key';
-          keyElement.innerHTML = key.keyName;
-          // console.log('KEY:');
-          // console.log(keyElement);
+          if (!key.func) keyElement.classList.add('symbolic');
+          if (key.special) keyElement.classList.add('special');
           line.append(keyElement);
+          listeners(keyElement);
         })
       };
       lineContent();
       line.className = 'keyboard-line';
-      // console.log('LINE:');
-      // console.log(line);
       keyboard.append(line);
     });
   };
   keyboardContent();
   keyboard.id = 'keyboard';
-  // keyboard.innerHTML = keyboardContent();
   document.body.append(keyboard);
-  
 };
 
+function fillKeys(option) {
+  let keys = document.getElementsByClassName('key');
+  // console.log(keys);
+  Array.prototype.forEach.call(keys, function(key) {
+    let keyObj = KEYS.find(obj => obj.id === key.id);
+    if (!keyObj.func) {
+      key.innerHTML = keyObj[option];
+    } else {
+      key.innerHTML = keyObj.keyName;
+    }
+  });
+  localStorage.setItem('lang', option.slice(-2).toLowerCase());
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  createPageContent();
+  fillKeys(localStorage.getItem('lang'));
+  keyboard.addEventListener('mousedown', keyboardClick);
+  keyboard.addEventListener('mouseup', keyboardMouseUp);
+  textarea.addEventListener('blur', textarea.focus);
+  // события клавиатуры 
+  document.addEventListener('keydown', physicalKeyDown);
+  document.addEventListener('keyup', physicalKeyUp);
+}, false);
+
+//key listeners
+function listeners(element) {
+  element.addEventListener('mouseenter', hover);
+  element.addEventListener('mouseleave', unhover);
+};
+
+keyboard.addEventListener('mousedown', keyboardClick);
+keyboard.addEventListener('mouseup', keyboardMouseUp);
+
+function keyboardClick(event) {
+  // проверяем, что передается в функцию, событие мыши со страницы или элемент от обработчика событий клавиатуры
+  let target;
+  if(Object.getPrototypeOf(event) === Object.getPrototypeOf(new MouseEvent(''))) {
+    target = event.target;
+  } else {
+    target = event;
+  }
+  if (target.classList.contains('key')) {
+    
+    onEventKey = target;
+    target.classList.add('pressed');
+
+    if (target.classList.contains('symbolic')) {
+      textarea.value += target.innerHTML;
+    } else if (target.classList.contains('special')) {
+      textarea.value += KEYS.find(obj => obj.id === target.id).en;
+    }
+  }
+};
+
+function keyboardMouseUp() {
+  if (onEventKey) {
+    onEventKey.classList.remove('pressed');
+    onEventKey = undefined;
+  }
+};
+
+function hover(event) {
+  event.target.classList.add('hovered');
+};
+
+function unhover(event) {
+  event.target.classList.remove('hovered');
+};
+
+// события клавиатуры 
+
+function physicalKeyDown(event) {
+  let idForElement = event.code.replace('Key', '').toLowerCase();
+  console.log(event);
+  event.preventDefault();
+  let element = document.getElementById(idForElement);
+  console.log(element);
+  keyboardClick(element);
+  // поменять раскалдку на английскую
+  if (event.altKey && event.shiftKey) {
+    console.log(document.getElementById('q').innerHTML);
+    switch (document.getElementById('q').innerHTML) {
+      case 'q':
+        fillKeys('ru');
+        break;
+      case 'Q':
+        fillKeys('onSiftRu');
+        break;
+      case 'й':
+        fillKeys('en');
+        break;
+      case 'Й':
+        fillKeys('onSiftEn');
+        break;
+    }
+  }
+};
+
+function physicalKeyUp(event) {
+  event.preventDefault();
+  let idForElement = event.code.replace('Key', '').toLowerCase();
+  let element = document.getElementById(idForElement);
+  element.classList.remove('pressed');
+};

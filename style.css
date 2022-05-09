@@ -10,6 +10,7 @@ textarea {
   border: 1px solid black;
   border-radius: 5px;
   box-sizing: border-box;
+  resize: none;
 }
 
 #keyboard {
@@ -29,24 +30,35 @@ textarea {
   background: rgb(165, 148, 148);
   border-radius: 5px;
   margin: 3px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 
-#Tab {
+#tab {
   width: 70px;
 }
-#CapsLock {
+#capslock {
   width: 100px;
 }
-#Left-Shift {
+#shiftleft {
   width: 120px;
 }
-#Left-Ctrl {
+#controlleft {
   width: 64px;
 }
-#Space {
+#space {
   width: 386px;
 }
 
-#Backspase, #Delete, #Enter, #Right-Shift, #Right-Ctrl {
+#backspace, #delete, #enter, #shiftright, #controlright {
   flex-grow: 1;
+}
+
+.hovered {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.pressed {
+  background: rgba(149, 43, 43, 0.5);
 }
