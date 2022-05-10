@@ -239,7 +239,12 @@ function onCaps(target, mouseEvent, up) {
 
 function onBackspace(target, mouseEvent, up) {
   if (up) {
-    textarea.value = textarea.value.slice(0, -1);
+    const position = textarea.selectionStart;
+    const textEnd = textarea.value.slice(position, textarea.textLength);
+    const textStart = position === 0 ? '' : textarea.value.slice(0, position - 1);
+    textarea.value = textStart + textEnd;
+    textarea.selectionStart = position === 0 ? position : position - 1;
+    textarea.selectionEnd = position === 0 ? position : position - 1;
   }
 }
 
