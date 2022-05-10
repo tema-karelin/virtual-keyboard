@@ -625,11 +625,14 @@ function createPageContent() {
 
 function fillKeys(option, keyClass) {
   let keys;
+  if (!option) {
+    option = 'en';
+    localStorage.setItem('lang', option);
+  };
   if (localStorage.getItem('lang') == 'en') {
     keys = document.getElementsByClassName(keyClass);
   } else {
     let selector = '.' + keyClass + ', ' + '#bracketleft, #bracketright, #semicolon, #quote, #comma, #period, #backquote';
-    console.log(selector);
     keys = document.querySelectorAll(selector);
   }
   
@@ -711,17 +714,14 @@ function unhover(event) {
 // события клавиатуры 
 function physicalKeyDown(event) {
   let idForElement = event.code.replace('Key', '').toLowerCase();
-  console.log(event);
   event.preventDefault();
-  // event.stopPropagation();
 
   let element = document.getElementById(idForElement);
-  console.log(element);
   // поменять раскалдку на английскую если активны сразу alt и shift 
   if (event.altKey && event.shiftKey) {
     switchLayout(event);
   } else if (element.id === 'capslock'&&event.repeat) {
-    console.log('REPEAT: ', event.repeat);
+    console.log('EVENT REPEATED');
   } else {
     keyboardClick(element);
   }
