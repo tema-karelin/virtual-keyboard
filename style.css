@@ -18,6 +18,9 @@ textarea {
   font-size: 1em;
   color:#081f2a;
 }
+textarea.mac {
+  width: 818px;
+}
 
 #info {
   font-family: Arial, Helvetica, sans-serif;
@@ -32,7 +35,9 @@ textarea {
   margin: 5px auto;
   border: 1px solid black;
 }
-
+#keyboard.mac {
+  width: 818px;
+}
 .keyboard-line {
   display: flex;
 }
@@ -60,11 +65,17 @@ textarea {
 #tab {
   width: 70px;
 }
+#tab.mac {
+  width: 85px;
+}
 #capslock {
   width: 100px;
 }
 #shiftleft {
   width: 120px;
+}
+#shiftleft.mac {
+  width: 130px;
 }
 #controlleft {
   width: 64px;
@@ -72,7 +83,9 @@ textarea {
 #space {
   width: 386px;
 }
-
+#space.mac {
+  width: 339px;
+}
 #backspace, #delete, #enter, #shiftright, #controlright {
   flex-grow: 1;
 }
