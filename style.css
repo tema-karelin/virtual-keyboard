@@ -63,3 +63,7 @@ textarea {
 .pressed {
   background: rgba(149, 43, 43, 0.5);
 }
+
+.caps-active {
+  background: rgb(99, 192, 130);
+}

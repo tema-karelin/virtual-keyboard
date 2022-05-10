@@ -575,19 +575,19 @@ let onEventKey;
 // alt + shift
 // caps
 
-let textarea = document.createElement('textarea');
-let keyboard = document.createElement('div');
+const textarea = document.createElement('textarea');
+const keyboard = document.createElement('div');
+const information = document.createElement('p');
+const SYSTEM = navigator.userAgentData.platform;
+let onShiftFlag = false;
 
 function createPageContent() {
   // создаем область для ввода текста
-  
   textarea.className = 'text';
   textarea.autofocus = true;
-  
   document.body.append(textarea);
 
   // создаем клавиатуру
-  
   let keyboardContent = () => {
     // create separate lines of keybord from KEYBOARD object (from top to bottom)
     KEYBOARD.forEach((keyboardLine) => {
@@ -597,8 +597,13 @@ function createPageContent() {
           let keyElement = document.createElement('div');
           keyElement.id = key.id;
           keyElement.className = 'key';
-          if (!key.func) keyElement.classList.add('symbolic');
+          if (key.func) {
+            keyElement.classList.add('func');
+          } else {
+            keyElement.classList.add('symbolic');
+          };
           if (key.special) keyElement.classList.add('special');
+          if (key.id.length === 1) keyElement.classList.add('letter');
           line.append(keyElement);
           listeners(keyElement);
         })
@@ -611,10 +616,23 @@ function createPageContent() {
   keyboardContent();
   keyboard.id = 'keyboard';
   document.body.append(keyboard);
+  
+  // создаем блок с информацией о том как поменять раскладку клавиатуры 
+  information.id = 'info';
+  information.innerHTML = 'Use <b>Alt + Shift</b> to switch keyboard layout<br>Keyboard application started on <b>' + SYSTEM + '</b> system';
+  document.body.append(information);
 };
 
-function fillKeys(option) {
-  let keys = document.getElementsByClassName('key');
+function fillKeys(option, keyClass) {
+  let keys;
+  if (localStorage.getItem('lang') == 'en') {
+    keys = document.getElementsByClassName(keyClass);
+  } else {
+    let selector = '.' + keyClass + ', ' + '#bracketleft, #bracketright, #semicolon, #quote, #comma, #period, #backquote';
+    console.log(selector);
+    keys = document.querySelectorAll(selector);
+  }
+  
   Array.prototype.forEach.call(keys, function(key) {
     let keyObj = KEYS.find(obj => obj.id === key.id);
     if (!keyObj.func) {
@@ -628,7 +646,7 @@ function fillKeys(option) {
 
 document.addEventListener('DOMContentLoaded', function() {
   createPageContent();
-  fillKeys(localStorage.getItem('lang'));
+  fillKeys(localStorage.getItem('lang'), 'key');
   keyboard.addEventListener('mousedown', keyboardClick);
   keyboard.addEventListener('mouseup', keyboardMouseUp);
   textarea.addEventListener('blur', textarea.focus);
@@ -647,27 +665,34 @@ keyboard.addEventListener('mousedown', keyboardClick);
 keyboard.addEventListener('mouseup', keyboardMouseUp);
 
 function keyboardClick(event) {
+  
   // проверяем, что передается в функцию, событие мыши со страницы или элемент от обработчика событий клавиатуры
   let target;
+  let mouseEvent;
   if(Object.getPrototypeOf(event) === Object.getPrototypeOf(new MouseEvent(''))) {
     target = event.target;
+    mouseEvent = true;
   } else {
     target = event;
+    mouseEvent = false;
   }
   if (target.classList.contains('key')) {
-    
     onEventKey = target;
     target.classList.add('pressed');
-
     if (target.classList.contains('symbolic')) {
       textarea.value += target.innerHTML;
+      if (onShiftFlag) onShift(target, mouseEvent, false);
     } else if (target.classList.contains('special')) {
       textarea.value += KEYS.find(obj => obj.id === target.id).en;
-    }
-  }
+      if (onShiftFlag) onShift(target, mouseEvent, false);
+    } else {
+      if (onShiftFlag) onShift(target, mouseEvent, false);
+      onFuncKey(target, mouseEvent, true);
+    };
+  }  
 };
 
-function keyboardMouseUp() {
+function keyboardMouseUp(event) {
   if (onEventKey) {
     onEventKey.classList.remove('pressed');
     onEventKey = undefined;
@@ -683,31 +708,21 @@ function unhover(event) {
 };
 
 // события клавиатуры 
-
 function physicalKeyDown(event) {
   let idForElement = event.code.replace('Key', '').toLowerCase();
   console.log(event);
   event.preventDefault();
+  // event.stopPropagation();
+
   let element = document.getElementById(idForElement);
   console.log(element);
-  keyboardClick(element);
-  // поменять раскалдку на английскую
+  // поменять раскалдку на английскую если активны сразу alt и shift 
   if (event.altKey && event.shiftKey) {
-    console.log(document.getElementById('q').innerHTML);
-    switch (document.getElementById('q').innerHTML) {
-      case 'q':
-        fillKeys('ru');
-        break;
-      case 'Q':
-        fillKeys('onSiftRu');
-        break;
-      case 'й':
-        fillKeys('en');
-        break;
-      case 'Й':
-        fillKeys('onSiftEn');
-        break;
-    }
+    switchLayout(event);
+  } else if (element.id === 'capslock'&&event.repeat) {
+    console.log('REPEAT: ', event.repeat);
+  } else {
+    keyboardClick(element);
   }
 };
 
@@ -716,4 +731,75 @@ function physicalKeyUp(event) {
   let idForElement = event.code.replace('Key', '').toLowerCase();
   let element = document.getElementById(idForElement);
   element.classList.remove('pressed');
+  if (element.classList.contains('func') && !element.classList.contains('special')) {
+    onFuncKey(element, false, false);
+  };
 };
+
+function switchLayout(event) {
+  switch (document.getElementById('q').innerHTML) {
+    case 'q':
+      fillKeys('ru', 'key');
+      break;
+    case 'Q':
+      fillKeys('onSiftRu', 'key');
+      break;
+    case 'й':
+      fillKeys('en', 'key');
+      break;
+    case 'Й':
+      fillKeys('onSiftEn', 'key');
+      break;
+  }
+  event.stopPropagation();
+}
+
+
+function onFuncKey(target, mouseEvent, up) {
+  if (target.id.includes('shift')) {
+    onShift(target, mouseEvent, up);
+  } else if (target.id.includes('backspace')) {
+    onBackspace(target, mouseEvent, up);
+  } else if (target.id.includes('caps')) {
+    onCaps(target, mouseEvent, up);
+  } else if (target.id.includes('delete')) {
+    onDelete(target, mouseEvent, up);
+  }
+}
+
+function onShift(target, mouseEvent, up) {
+  if (up) {
+    fillKeys('onSift' + localStorage.getItem('lang').charAt(0).toUpperCase() + localStorage.getItem('lang').charAt(1), 'key');
+    if (mouseEvent) onShiftFlag = true;
+  } else {
+    fillKeys(localStorage.getItem('lang'), 'key');
+    onShiftFlag = false;
+  }
+}
+
+function onCaps(target, mouseEvent, up) {
+  if (!target.classList.contains('caps-active') && up) {
+    fillKeys('onSift' + localStorage.getItem('lang').charAt(0).toUpperCase() + localStorage.getItem('lang').charAt(1), 'letter');
+    target.classList.add('caps-active');
+  } else if (up) {
+    fillKeys(localStorage.getItem('lang'), 'letter');
+    target.classList.remove('caps-active');
+  }
+}
+
+function onBackspace(target, mouseEvent, up) {
+  if (up) {
+    textarea.value = textarea.value.slice(0, -1);
+  }
+}
+
+function onDelete(target, mouseEvent, up) {
+  if (up) {
+    let position = textarea.selectionStart;
+    let textEnd = textarea.value.slice(position + 1, textarea.textLength);
+    let textStart = textarea.value.slice(0, position);
+    textarea.value = textStart + textEnd;
+    textarea.selectionStart = position;
+    textarea.selectionEnd = position;
+  }
+}
