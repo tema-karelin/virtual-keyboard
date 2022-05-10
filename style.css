@@ -1,14 +1,16 @@
 body {
+  min-height: 100vh;
+  width: 100vw;
   margin: 0 auto;
   text-align: center;
-  background: rgba(251, 255, 233, 0.3);
+  background: linear-gradient(10deg, #bddad3 5%, #1bbeb5 50%, #009ac8 70%, #009ac8 80%);
 }
 
 textarea {
   height: 150px;
   width: 880px;
   margin: 50px auto;
-  border: 1px solid black;
+  border: 1px solid #6f6617;
   border-radius: 5px;
   box-sizing: border-box;
   resize: none;
@@ -17,16 +19,22 @@ textarea {
   font-weight: normal;
   font-size: 1em;
   color:#081f2a;
+
+  background: rgba(214, 214, 214, 0.5);
 }
 textarea.mac {
   width: 818px;
+}
+textarea:focus {
+  box-shadow: 0 0 5px 5px rgb(255 255 255 / 50%);
+  outline: none;
 }
 
 #info {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 1em;
-  color:#081f2a;
+  color:#6e5841;
   min-width: 818px;
 }
 
@@ -34,7 +42,10 @@ textarea.mac {
   height: auto;
   width: 880px;
   margin: 5px auto;
-  border: 1px solid black;
+  border: 2px solid #6f6617;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 13px #ffffff9c;
 }
 #keyboard.mac {
   width: 818px;
@@ -49,7 +60,7 @@ textarea.mac {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(165, 148, 148);
+  background: rgb(173, 159, 112);
   border-radius: 5px;
   margin: 3px;
   -moz-user-select: none;
@@ -92,7 +103,7 @@ textarea.mac {
 }
 
 .hovered {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(129, 118, 83, 0.9);
 }
 
 .pressed {
