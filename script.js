@@ -18,8 +18,8 @@
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
 const information = document.createElement('p');
-const SYSTEM = ((navigator.userAgent.indexOf('Windows')>-1) ? 'Windows': 'MacOS');
-const KEYBOARD = ((SYSTEM == 'Windows')  ? WIN_KEYBOARD : MAC_KEYBOARD);
+const SYSTEM = ((navigator.userAgent.indexOf('Windows') > -1) ? 'Windows' : 'MacOS');
+const KEYBOARD = ((SYSTEM === 'Windows') ? WIN_KEYBOARD : MAC_KEYBOARD);
 const KEYS = KEYBOARD.flat();
 let onShiftFlag = false;
 let onEventKey;
@@ -33,26 +33,26 @@ function createPageContent() {
   document.body.append(textarea);
 
   // создаем клавиатуру
-  let keyboardContent = () => {
+  const keyboardContent = () => {
     // create separate lines of keybord from KEYBOARD object (from top to bottom)
     KEYBOARD.forEach((keyboardLine) => {
-      let line = document.createElement('div');
-      let lineContent = () => {
-        keyboardLine.forEach(key => {
-          let keyElement = document.createElement('div');
+      const line = document.createElement('div');
+      const lineContent = () => {
+        keyboardLine.forEach((key) => {
+          const keyElement = document.createElement('div');
           keyElement.id = key.id;
           keyElement.className = 'key';
           if (key.func) {
             keyElement.classList.add('func');
           } else {
             keyElement.classList.add('symbolic');
-          };
+          }
           if (SYSTEM !== 'Windows') keyElement.classList.add('mac');
           if (key.special) keyElement.classList.add('special');
           if (key.id.length === 1) keyElement.classList.add('letter');
           line.append(keyElement);
           listeners(keyElement);
-        })
+        });
       };
       lineContent();
       line.className = 'keyboard-line';
@@ -63,33 +63,31 @@ function createPageContent() {
   keyboard.id = 'keyboard';
   if (SYSTEM !== 'Windows') keyboard.classList.add('mac');
   document.body.append(keyboard);
-  
-  // создаем блок с информацией о том как поменять раскладку клавиатуры 
+
+  // создаем блок с информацией о том как поменять раскладку клавиатуры
   information.id = 'info';
-  information.innerHTML = 'Use <b>Alt + Shift</b> to switch keyboard layout<br><br>Keyboard application started on <b>' + SYSTEM + '</b> system<br><br><b>Shift</b> key on virtual keyboard (by mouse click) works as on smartphones. The next mouse click (after <b>Shift</b>) returns symbol in uppercase<br><br>Good Luck!';
+  information.innerHTML = `Use <b>Alt + Shift</b> to switch keyboard layout<br><br>Keyboard application started on <b>${SYSTEM}</b> system<br><br><b>Shift</b> key on virtual keyboard (by mouse click) works as on smartphones. The next mouse click (after <b>Shift</b>) returns symbol in uppercase<br><br>Good Luck!`;
   document.body.append(information);
-};
+}
 
 function fillKeys(option, keyClass) {
-  let keys;
   if (!option) {
-    option = 'en';
-    localStorage.setItem('lang', option);
-  };
+    localStorage.setItem('lang', 'en');
+  }
   let arrIdsToLetter = [];
-  if (SYSTEM == 'Windows') {
+  if (SYSTEM === 'Windows') {
     arrIdsToLetter = ['bracketleft', 'bracketright', 'semicolon', 'quote', 'comma', 'period', 'backquote'];
   } else {
     arrIdsToLetter = ['bracketleft', 'bracketright', 'semicolon', 'quote', 'comma', 'period', 'backslash'];
   }
-  if (localStorage.getItem('lang') == 'ru') {
-    arrIdsToLetter.forEach(el => document.getElementById(el).classList.add('letter'));
+  if (localStorage.getItem('lang') === 'ru') {
+    arrIdsToLetter.forEach((el) => document.getElementById(el).classList.add('letter'));
   } else {
-    arrIdsToLetter.forEach(el => document.getElementById(el).classList.remove('letter'));
+    arrIdsToLetter.forEach((el) => document.getElementById(el).classList.remove('letter'));
   }
-  keys = document.getElementsByClassName(keyClass);
-  Array.prototype.forEach.call(keys, function(key) {
-    let keyObj = KEYS.find(obj => obj.id === key.id);
+  const keys = document.getElementsByClassName(keyClass);
+  Array.prototype.forEach.call(keys, (key) => {
+    const keyObj = KEYS.find((obj) => obj.id === key.id);
     if (!keyObj.func) {
       key.innerHTML = keyObj[option];
     } else {
@@ -97,34 +95,34 @@ function fillKeys(option, keyClass) {
     }
   });
   localStorage.setItem('lang', option.slice(-2).toLowerCase());
-};
+}
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   createPageContent();
   fillKeys(localStorage.getItem('lang'), 'key');
   keyboard.addEventListener('mousedown', keyboardClick);
   keyboard.addEventListener('mouseup', keyboardMouseUp);
   textarea.addEventListener('blur', textarea.focus);
-  // события клавиатуры 
+  // события клавиатуры
   document.addEventListener('keydown', physicalKeyDown);
   document.addEventListener('keyup', physicalKeyUp);
 }, false);
 
-//key listeners
+// key listeners
 function listeners(element) {
   element.addEventListener('mouseenter', hover);
   element.addEventListener('mouseleave', unhover);
-};
+}
 
 keyboard.addEventListener('mousedown', keyboardClick);
 keyboard.addEventListener('mouseup', keyboardMouseUp);
 
 function keyboardClick(event) {
-  
-  // проверяем, что передается в функцию, событие мыши со страницы или элемент от обработчика событий клавиатуры
+  // проверяем, что передается в функцию
+  // событие мыши со страницы или элемент от обработчика событий клавиатуры
   let target;
   let mouseEvent;
-  if(Object.getPrototypeOf(event) === Object.getPrototypeOf(new MouseEvent(''))) {
+  if (Object.getPrototypeOf(event) === Object.getPrototypeOf(new MouseEvent(''))) {
     target = event.target;
     mouseEvent = true;
   } else {
@@ -138,56 +136,54 @@ function keyboardClick(event) {
       textarea.value += target.innerHTML;
       if (onShiftFlag) onShift(target, mouseEvent, false);
     } else if (target.classList.contains('special')) {
-      textarea.value += KEYS.find(obj => obj.id === target.id).en;
+      textarea.value += KEYS.find((obj) => obj.id === target.id).en;
       if (onShiftFlag) onShift(target, mouseEvent, false);
     } else if (onShiftFlag && target.id !== 'capslock') {
-        onShift(target, mouseEvent, false)
-      } else {
-        onFuncKey(target, mouseEvent, true);
-    };
-  }  
-};
+      onShift(target, mouseEvent, false);
+    } else {
+      onFuncKey(target, mouseEvent, true);
+    }
+  }
+}
 
-function keyboardMouseUp(event) {
+function keyboardMouseUp() {
   if (onEventKey) {
     onEventKey.classList.remove('pressed');
     onEventKey = undefined;
   }
-};
+}
 
 function hover(event) {
   event.target.classList.add('hovered');
-};
+}
 
 function unhover(event) {
   event.target.classList.remove('hovered');
-};
+}
 
-// события клавиатуры 
+// события клавиатуры
 function physicalKeyDown(event) {
-  let idForElement = event.code.replace('Key', '').toLowerCase();
+  const idForElement = event.code.replace('Key', '').toLowerCase();
   event.preventDefault();
 
-  let element = document.getElementById(idForElement);
-  // поменять раскалдку на английскую если активны сразу alt и shift 
+  const element = document.getElementById(idForElement);
+  // поменять раскалдку на английскую если активны сразу alt и shift
   if (event.altKey && event.shiftKey) {
     switchLayout(event);
-  } else if (element.id === 'capslock'&&event.repeat) {
-    console.log('EVENT REPEATED');
-  } else {
+  } else if (!(element.id === 'capslock' && event.repeat)) {
     keyboardClick(element);
   }
-};
+}
 
 function physicalKeyUp(event) {
   event.preventDefault();
-  let idForElement = event.code.replace('Key', '').toLowerCase();
-  let element = document.getElementById(idForElement);
+  const idForElement = event.code.replace('Key', '').toLowerCase();
+  const element = document.getElementById(idForElement);
   element.classList.remove('pressed');
   if (element.classList.contains('func') && !element.classList.contains('special')) {
     onFuncKey(element, false, false);
-  };
-};
+  }
+}
 
 function switchLayout(event) {
   switch (document.getElementById('q').innerHTML) {
@@ -203,10 +199,11 @@ function switchLayout(event) {
     case 'Й':
       fillKeys('onSiftEn', 'key');
       break;
+    default:
+      break;
   }
   event.stopPropagation();
 }
-
 
 function onFuncKey(target, mouseEvent, up) {
   if (target.id.includes('shift')) {
@@ -222,7 +219,7 @@ function onFuncKey(target, mouseEvent, up) {
 
 function onShift(target, mouseEvent, up) {
   if (up) {
-    fillKeys('onSift' + localStorage.getItem('lang').charAt(0).toUpperCase() + localStorage.getItem('lang').charAt(1), 'key');
+    fillKeys(`onSift${localStorage.getItem('lang').charAt(0).toUpperCase()}${localStorage.getItem('lang').charAt(1)}`, 'key');
     if (mouseEvent) onShiftFlag = true;
   } else {
     fillKeys(localStorage.getItem('lang'), 'key');
@@ -232,7 +229,7 @@ function onShift(target, mouseEvent, up) {
 
 function onCaps(target, mouseEvent, up) {
   if (!target.classList.contains('caps-active') && up) {
-    fillKeys('onSift' + localStorage.getItem('lang').charAt(0).toUpperCase() + localStorage.getItem('lang').charAt(1), 'letter');
+    fillKeys(`onSift${localStorage.getItem('lang').charAt(0).toUpperCase()}${localStorage.getItem('lang').charAt(1)}`, 'letter');
     target.classList.add('caps-active');
   } else if (up) {
     fillKeys(localStorage.getItem('lang'), 'letter');
@@ -248,9 +245,9 @@ function onBackspace(target, mouseEvent, up) {
 
 function onDelete(target, mouseEvent, up) {
   if (up) {
-    let position = textarea.selectionStart;
-    let textEnd = textarea.value.slice(position + 1, textarea.textLength);
-    let textStart = textarea.value.slice(0, position);
+    const position = textarea.selectionStart;
+    const textEnd = textarea.value.slice(position + 1, textarea.textLength);
+    const textStart = textarea.value.slice(0, position);
     textarea.value = textStart + textEnd;
     textarea.selectionStart = position;
     textarea.selectionEnd = position;
