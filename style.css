@@ -12,6 +12,11 @@ textarea {
   border-radius: 5px;
   box-sizing: border-box;
   resize: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  color:#081f2a;
 }
 
 #keyboard {
@@ -28,12 +33,19 @@ textarea {
 .key {
   height: 50px;
   width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgb(165, 148, 148);
   border-radius: 5px;
   margin: 3px;
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  color:#081f2a;
   box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.4);
   transition: background-color 0.3s, box-shadow 0.3s;
 }
