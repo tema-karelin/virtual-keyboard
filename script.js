@@ -685,9 +685,10 @@ function keyboardClick(event) {
     } else if (target.classList.contains('special')) {
       textarea.value += KEYS.find(obj => obj.id === target.id).en;
       if (onShiftFlag) onShift(target, mouseEvent, false);
-    } else {
-      if (onShiftFlag) onShift(target, mouseEvent, false);
-      onFuncKey(target, mouseEvent, true);
+    } else if (onShiftFlag && target.id !== 'capslock') {
+        onShift(target, mouseEvent, false)
+      } else {
+        onFuncKey(target, mouseEvent, true);
     };
   }  
 };
