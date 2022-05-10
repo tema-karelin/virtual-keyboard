@@ -27,6 +27,7 @@ textarea.mac {
   font-weight: normal;
   font-size: 1em;
   color:#081f2a;
+  min-width: 818px;
 }
 
 #keyboard {
