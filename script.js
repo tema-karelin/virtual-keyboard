@@ -72,6 +72,7 @@ function createPageContent() {
 
 function fillKeys(option, keyClass) {
   if (!option) {
+    option = 'en';
     localStorage.setItem('lang', 'en');
   }
   let arrIdsToLetter = [];
@@ -94,6 +95,7 @@ function fillKeys(option, keyClass) {
       key.innerHTML = keyObj.keyName;
     }
   });
+
   localStorage.setItem('lang', option.slice(-2).toLowerCase());
 }
 
