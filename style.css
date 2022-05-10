@@ -34,6 +34,8 @@ textarea {
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 #tab {
@@ -62,6 +64,7 @@ textarea {
 
 .pressed {
   background: rgba(149, 43, 43, 0.5);
+  box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .caps-active {
