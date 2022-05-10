@@ -619,7 +619,7 @@ function createPageContent() {
   
   // создаем блок с информацией о том как поменять раскладку клавиатуры 
   information.id = 'info';
-  information.innerHTML = 'Use <b>Alt + Shift</b> to switch keyboard layout<br>Keyboard application started on <b>' + SYSTEM + '</b> system';
+  information.innerHTML = 'Use <b>Alt + Shift</b> to switch keyboard layout<br><br>Keyboard application started on <b>' + SYSTEM + '</b> system<br><br><b>Shift</b> key on virtual keyboard (by mouse click) works as on smartphones. By first mouse click keyboard retuers symbol in uppercase<br><br>Good Luck!';
   document.body.append(information);
 };
 

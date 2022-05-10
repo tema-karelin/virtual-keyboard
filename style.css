@@ -19,6 +19,13 @@ textarea {
   color:#081f2a;
 }
 
+#info {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  color:#081f2a;
+}
+
 #keyboard {
   height: auto;
   width: 880px;
@@ -80,5 +87,5 @@ textarea {
 }
 
 .caps-active {
-  background: rgb(99, 192, 130);
+  background: rgba(149, 43, 43, 0.5);
 }
