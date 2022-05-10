@@ -18,8 +18,8 @@
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
 const information = document.createElement('p');
-const SYSTEM = navigator.userAgentData.platform;
-const KEYBOARD = (SYSTEM == 'Windows' ? WIN_KEYBOARD : MAC_KEYBOARD);
+const SYSTEM = ((navigator.userAgent.indexOf('Windows')>-1) ? 'Windows': 'MacOS');
+const KEYBOARD = ((SYSTEM == 'Windows')  ? WIN_KEYBOARD : MAC_KEYBOARD);
 const KEYS = KEYBOARD.flat();
 let onShiftFlag = false;
 let onEventKey;
