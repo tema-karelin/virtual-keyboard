@@ -1,0 +1,116 @@
+body {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(10deg, #bddad3 5%, #1bbeb5 50%, #009ac8 70%, #009ac8 80%);
+}
+
+textarea {
+  height: 150px;
+  width: 880px;
+  margin: 50px auto;
+  border: 1px solid #6f6617;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  color:#081f2a;
+
+  background: rgba(214, 214, 214, 0.5);
+}
+textarea.mac {
+  width: 818px;
+}
+textarea:focus {
+  box-shadow: 0 0 5px 5px rgb(255 255 255 / 50%);
+  outline: none;
+}
+
+#info {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  color:#6e5841;
+  min-width: 818px;
+}
+
+#keyboard {
+  height: auto;
+  width: 880px;
+  margin: 5px auto;
+  border: 2px solid #6f6617;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 13px #ffffff9c;
+}
+#keyboard.mac {
+  width: 818px;
+}
+.keyboard-line {
+  display: flex;
+}
+
+.key {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(173, 159, 112);
+  border-radius: 5px;
+  margin: 3px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  color:#081f2a;
+  box-shadow: inset 0 0 3px 3px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#tab {
+  width: 70px;
+}
+#tab.mac {
+  width: 85px;
+}
+#capslock {
+  width: 100px;
+}
+#shiftleft {
+  width: 120px;
+}
+#shiftleft.mac {
+  width: 130px;
+}
+#controlleft {
+  width: 64px;
+}
+#space {
+  width: 386px;
+}
+#space.mac {
+  width: 339px;
+}
+#backspace, #delete, #enter, #shiftright, #controlright {
+  flex-grow: 1;
+}
+
+.hovered {
+  background: rgba(129, 118, 83, 0.9);
+}
+
+.pressed {
+  background: rgba(149, 43, 43, 0.5);
+  box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.caps-active {
+  background: rgba(149, 43, 43, 0.5);
+}
