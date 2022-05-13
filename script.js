@@ -1,20 +1,3 @@
-// ^ сделать функцию заполнения innerHTML каждой клавиши отдельной от создания клавиатуры
-// готово
-// ^ стилизация
-// ^ кнопка win
-// ^ случай с клавиатурой mac
-
-// ^ заполнение в зависимости от языка, оншифта и капса
-// ^ анимация onhover
-// ^ onclick
-// обычная клавиша (символьная)
-// tab, пробел, enter и стрелки
-// shift
-// backspase
-// delete
-// alt + shift
-// caps
-
 const textarea = document.createElement('textarea');
 const keyboard = document.createElement('div');
 const information = document.createElement('p');
@@ -167,7 +150,10 @@ function unhover(event) {
 function physicalKeyDown(event) {
   const idForElement = event.code.replace('Key', '').toLowerCase();
   event.preventDefault();
-
+  // если нажата клавиша, которой нет на виртуальной клавиатуре
+  if (!idForElement || !document.getElementById(idForElement)) {
+    return;
+  }
   const element = document.getElementById(idForElement);
   // поменять раскалдку на английскую если активны сразу alt и shift
   if (event.altKey && event.shiftKey) {
@@ -180,6 +166,10 @@ function physicalKeyDown(event) {
 function physicalKeyUp(event) {
   event.preventDefault();
   const idForElement = event.code.replace('Key', '').toLowerCase();
+  // если нажата клавиша, которой нет на виртуальной клавиатуре
+  if (!idForElement || !document.getElementById(idForElement)) {
+    return;
+  }
   const element = document.getElementById(idForElement);
   element.classList.remove('pressed');
   if (element.classList.contains('func') && !element.classList.contains('special')) {
